@@ -32,5 +32,19 @@ class ContoCorrente(Conto):
         self.preleva(self.__saldo)
         self.deposita(importo)
 
-c1 = ContoCorrente("Alessandro", "10", 2000)
+#Classe per avere dei metodi che possa essere invocato direttamente nelle classi senza invocare istanze
+class GestoreContiCorrenti:
+    @staticmethod
+    def bonifico(sorgente,destinazione,importo):
+        sorgente.preleva(importo)
+        destinazione.deposita(importo)
+
+
+c1=ContoCorrente("Alessandro","10",2000)
+c2=ContoCorrente("Susanna","20",5000)
 c1.descrizione()
+c2.descrizione()
+
+GestoreContiCorrenti.bonifico(c1,c2,500)
+c1.descrizione()
+c2.descrizione()
